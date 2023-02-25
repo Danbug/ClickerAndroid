@@ -3,12 +3,12 @@ package com.example.clicker
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlin.random.Random
 
@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var shared: SharedPreferences
     private lateinit var button: ImageButton
     private lateinit var scoreText: TextView
+
     // spawned cookies
     private lateinit var newView: ImageView
     private lateinit var mainLayout: ConstraintLayout
@@ -36,52 +37,52 @@ class MainActivity : AppCompatActivity() {
         readData()
 
         scoreText = findViewById(R.id.scoreText)
-        scoreText.text =  getString(R.string.player_score, score.toString())
+        scoreText.text = getString(R.string.player_score, score.toString())
 
         rng = Random(System.currentTimeMillis())
 
         button = findViewById(R.id.imageButton)
 
-        button.setOnClickListener{ buttonOnClickAddScore() }
+        button.setOnClickListener { buttonOnClickAddScore() }
     }
 
-    private fun buttonOnClickAddScore(){
+    private fun buttonOnClickAddScore() {
         increaseScoreOnClick()
-        spawnCookie()
+        spawnAndMoveCookie()
         // maybe i should put it in other place
         saveData()
     }
 
-    private fun increaseScoreOnClick(){
+    private fun increaseScoreOnClick() {
         score++
-        scoreText.text =  getString(R.string.player_score, score.toString())
+        scoreText.text = getString(R.string.player_score, score.toString())
     }
-    private fun spawnCookie(){
 
+    private fun spawnAndMoveCookie() {
         newView = ImageView(this)
 
-        mainLayout.addView(newView)
+        mainLayout.addView(newView, 0)
 
-        newView.layoutParams.height = 200
-        newView.layoutParams.width = 200
+        newView.layoutParams.height = rng.nextInt(150, 250)
+        newView.layoutParams.width = rng.nextInt(150, 250)
         newView.x = rng.nextFloat() * 1000
         newView.y = -300F
-        newView.alpha = 0.5F;
-        newView.setImageDrawable(getDrawable(R.drawable.cookie))
+        newView.alpha = 0.5F
+        newView.setImageDrawable(AppCompatResources.getDrawable(this, R.drawable.cookie))
         // move cookie
         ObjectAnimator.ofFloat(newView, "translationY", 2080f).apply {
-            duration = 2000
+            duration = rng.nextLong(1500, 3000)
             start()
         }
     }
 
-    private fun readData(){
-        score = shared.getInt("score",score)
+    private fun readData() {
+        score = shared.getInt("score", score)
     }
 
-    private fun saveData(){
+    private fun saveData() {
         val editData = shared.edit()
-        editData.putInt("score",score)
+        editData.putInt("score", score)
         editData.apply()
     }
 
