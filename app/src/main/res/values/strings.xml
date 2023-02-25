@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Clicker</string>
+    <string name="player_score">Player score = %s</string>
+</resources>
