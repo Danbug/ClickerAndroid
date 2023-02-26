@@ -3,4 +3,6 @@
     <string name="player_score">Player score = %s</string>
     <string name="increase_power_of_click">Increase power of click</string>
     <string name="current_power_of_click">Current power = %s</string>
+    <string name="description_main_button">Button to earn cookies</string>
+    <string name="description_power_button">Button to power up your click</string>
 </resources>

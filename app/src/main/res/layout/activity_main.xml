@@ -22,11 +22,11 @@
         app:layout_constraintVertical_bias="0.08" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/mainClickButton"
         android:layout_width="325dp"
         android:layout_height="146dp"
         android:adjustViewBounds="false"
-        android:contentDescription="@android:string/yes"
+        android:contentDescription="@string/description_main_button"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         android:src="@drawable/softserve_id_academy"
@@ -37,24 +37,25 @@
         app:layout_constraintVertical_bias="0.499" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/upgradePowerButton"
         android:layout_width="71dp"
         android:layout_height="62dp"
         android:adjustViewBounds="false"
         android:background="#00FFFFFF"
         android:backgroundTintMode="add"
+        android:contentDescription='@string/description_power_button'
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.67"
+        app:layout_constraintTop_toBottomOf="@+id/mainClickButton"
+        app:layout_constraintVertical_bias="0.558"
         app:srcCompat="@android:drawable/ic_menu_upload" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/increasePowerTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/increase_power_of_click"
@@ -63,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="@+id/powerOfClickTV"
         app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="@+id/powerOfClickTV"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintTop_toBottomOf="@+id/upgradePowerButton"
         app:layout_constraintVertical_bias="0.719" />
 
     <TextView
@@ -73,11 +74,11 @@
         android:layout_marginTop="8dp"
         android:text="@string/current_power_of_click"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="@+id/imageButton2"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+        app:layout_constraintBottom_toTopOf="@+id/increasePowerTV"
+        app:layout_constraintEnd_toEndOf="@+id/upgradePowerButton"
+        app:layout_constraintHorizontal_bias="0.42"
+        app:layout_constraintStart_toStartOf="@+id/upgradePowerButton"
+        app:layout_constraintTop_toBottomOf="@+id/upgradePowerButton"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

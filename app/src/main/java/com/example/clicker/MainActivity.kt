@@ -46,8 +46,8 @@ class MainActivity : AppCompatActivity() {
 
         rng = Random(System.currentTimeMillis())
 
-        button = findViewById(R.id.imageButton)
-        buttonPowerUp = findViewById(R.id.imageButton2)
+        button = findViewById(R.id.mainClickButton)
+        buttonPowerUp = findViewById(R.id.upgradePowerButton)
 
         button.setOnClickListener { buttonOnClickAddScore() }
         buttonPowerUp.setOnClickListener { buttonOnClickAddPower() }
@@ -81,10 +81,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun spawnAndMoveCookie() {
+        // spawn cookie
         newView = ImageView(this)
 
         mainLayout.addView(newView, 0)
 
+        // modify cookie
         newView.layoutParams.height = rng.nextInt(150, 250)
         newView.layoutParams.width = rng.nextInt(150, 250)
         newView.x = rng.nextFloat() * 1000
