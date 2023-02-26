@@ -16,7 +16,9 @@ class MainActivity : AppCompatActivity() {
     // save data
     private lateinit var shared: SharedPreferences
     private lateinit var button: ImageButton
+    private lateinit var buttonPowerUp: ImageButton
     private lateinit var scoreText: TextView
+    private lateinit var powerOfClickText: TextView
 
     // spawned cookies
     private lateinit var newView: ImageView
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private var score: Int = 0
+    private var powerOfClick: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +41,17 @@ class MainActivity : AppCompatActivity() {
 
         scoreText = findViewById(R.id.scoreText)
         scoreText.text = getString(R.string.player_score, score.toString())
+        powerOfClickText = findViewById(R.id.powerOfClickTV)
+        powerOfClickText.text = getString(R.string.current_power_of_click, powerOfClick.toString())
 
         rng = Random(System.currentTimeMillis())
 
         button = findViewById(R.id.imageButton)
+        buttonPowerUp = findViewById(R.id.imageButton2)
 
         button.setOnClickListener { buttonOnClickAddScore() }
+        buttonPowerUp.setOnClickListener { buttonOnClickAddPower() }
+
     }
 
     private fun buttonOnClickAddScore() {
@@ -53,8 +61,22 @@ class MainActivity : AppCompatActivity() {
         saveData()
     }
 
+    // formula of power upgrade = current power * 200;
+    private fun buttonOnClickAddPower() {
+        val costOfUpgrade = powerOfClick * 200
+        if (costOfUpgrade > score) {
+            return
+        }
+
+        score -= costOfUpgrade
+        powerOfClick += 1
+
+        scoreText.text = getString(R.string.player_score, score.toString())
+        powerOfClickText.text = getString(R.string.current_power_of_click, powerOfClick.toString())
+    }
+
     private fun increaseScoreOnClick() {
-        score++
+        score += powerOfClick
         scoreText.text = getString(R.string.player_score, score.toString())
     }
 
@@ -78,11 +100,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun readData() {
         score = shared.getInt("score", score)
+        powerOfClick = shared.getInt("powerOfClick", powerOfClick)
     }
 
     private fun saveData() {
         val editData = shared.edit()
         editData.putInt("score", score)
+        editData.putInt("powerOfClick", powerOfClick)
         editData.apply()
     }
 

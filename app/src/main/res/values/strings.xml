@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Clicker</string>
     <string name="player_score">Player score = %s</string>
+    <string name="increase_power_of_click">Increase power of click</string>
+    <string name="current_power_of_click">Current power = %s</string>
 </resources>
