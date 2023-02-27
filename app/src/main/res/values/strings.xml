@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Clicker</string>
     <string name="player_score">Player score = %s</string>
-    <string name="increase_power_of_click">Increase power of click</string>
+    <string name="add_power_of_click">Add power of click</string>
     <string name="current_power_of_click">Current power = %s</string>
+    <string name="add_amount_of_workers">Add workers</string>
+    <string name="current_amount_of_workers">Workers = %s</string>
     <string name="description_main_button">Button to earn cookies</string>
     <string name="description_power_button">Button to power up your click</string>
+    <string name="description_worker_button">Button to buy workers</string>
 </resources>
