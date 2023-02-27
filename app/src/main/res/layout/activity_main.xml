@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/simple_bg"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/mainLayout">
 
     <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:text="@string/player_score"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -18,14 +20,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/mainClickButton"
         android:layout_width="325dp"
         android:layout_height="146dp"
         android:adjustViewBounds="false"
-        android:contentDescription="@android:string/yes"
+        android:contentDescription="@string/description_main_button"
         android:cropToPadding="false"
         android:scaleType="fitCenter"
         android:src="@drawable/softserve_id_academy"
@@ -34,5 +36,92 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.499" />
+
+    <ImageButton
+        android:id="@+id/upgradePowerButton"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="110dp"
+        android:adjustViewBounds="false"
+        android:background="#00FFFFFF"
+        android:backgroundTintMode="add"
+        android:contentDescription='@string/description_power_button'
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainClickButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
+
+    <TextView
+        android:id="@+id/increasePowerTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/add_power_of_click"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/powerOfClickTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/powerOfClickTV"
+        app:layout_constraintTop_toBottomOf="@+id/upgradePowerButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/powerOfClickTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/current_power_of_click"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/increasePowerTV"
+        app:layout_constraintEnd_toEndOf="@+id/upgradePowerButton"
+        app:layout_constraintStart_toStartOf="@+id/upgradePowerButton"
+        app:layout_constraintTop_toBottomOf="@+id/upgradePowerButton" />
+
+    <ImageButton
+        android:id="@+id/workerButton"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="110dp"
+        android:background="#00FFFFFF"
+        android:backgroundTintMode="add"
+        android:contentDescription="@string/description_worker_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/upgradePowerButton"
+        app:layout_constraintTop_toBottomOf="@+id/mainClickButton"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/amountOfWorkersTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_amount_of_workers"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/increaseWorkersTV"
+        app:layout_constraintEnd_toEndOf="@+id/workerButton"
+        app:layout_constraintStart_toStartOf="@+id/workerButton"
+        app:layout_constraintTop_toBottomOf="@+id/workerButton"
+        app:layout_constraintVertical_bias="0.508" />
+
+    <TextView
+        android:id="@+id/increaseWorkersTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/add_amount_of_workers"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/amountOfWorkersTV"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/amountOfWorkersTV"
+        app:layout_constraintTop_toBottomOf="@+id/workerButton"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
