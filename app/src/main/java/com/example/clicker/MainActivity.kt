@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         createFarmers()
     }
 
-    private fun initializeComponents(){
+    private fun initializeComponents() {
         mainLayout = findViewById(R.id.mainLayout)
 
         shared = getSharedPreferences("ClickerDB", Context.MODE_PRIVATE)
@@ -76,16 +76,15 @@ class MainActivity : AppCompatActivity() {
         buttonBuyWorker = findViewById(R.id.workerButton)
     }
 
-    private fun initializeListeners(){
+    private fun initializeListeners() {
         button.setOnClickListener { buttonOnClickAddScore() }
         buttonPowerUp.setOnClickListener { buttonOnClickAddPower() }
         buttonBuyWorker.setOnClickListener { addFarmer() }
-        //powerOfClickText.setOnClickListener{ score += 10000 }
+        //powerOfClickText.setOnClickListener { score += 10000 }
     }
 
-    override fun onStop() {
-        super.onStop()
-        // maybe i should put it in other place
+    override fun onPause() {
+        super.onPause()
         saveData()
     }
 
@@ -100,7 +99,11 @@ class MainActivity : AppCompatActivity() {
 
         synchronized(this) {
             if (costOfUpgrade > score) {
-                Toast.makeText(applicationContext ,"Cost of upgrade is $costOfUpgrade",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Cost of upgrade is $costOfUpgrade",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return
             }
             score -= costOfUpgrade
@@ -157,7 +160,11 @@ class MainActivity : AppCompatActivity() {
 
         synchronized(this) {
             if (costOfUpgrade > score) {
-                Toast.makeText(applicationContext ,"Cost of upgrade is $costOfUpgrade",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Cost of upgrade is $costOfUpgrade",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return
             }
             score -= costOfUpgrade
