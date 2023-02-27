@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +47,13 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        initializeComponents()
+        initializeListeners()
 
+        createFarmers()
+    }
+
+    private fun initializeComponents(){
         mainLayout = findViewById(R.id.mainLayout)
 
         shared = getSharedPreferences("ClickerDB", Context.MODE_PRIVATE)
@@ -67,12 +74,13 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.mainClickButton)
         buttonPowerUp = findViewById(R.id.upgradePowerButton)
         buttonBuyWorker = findViewById(R.id.workerButton)
+    }
 
+    private fun initializeListeners(){
         button.setOnClickListener { buttonOnClickAddScore() }
         buttonPowerUp.setOnClickListener { buttonOnClickAddPower() }
         buttonBuyWorker.setOnClickListener { addFarmer() }
-
-        createFarmers()
+        //powerOfClickText.setOnClickListener{ score += 10000 }
     }
 
     override fun onStop() {
@@ -90,8 +98,9 @@ class MainActivity : AppCompatActivity() {
     private fun buttonOnClickAddPower() {
         val costOfUpgrade = powerOfClick * 200
 
-        synchronized(this){
+        synchronized(this) {
             if (costOfUpgrade > score) {
+                Toast.makeText(applicationContext ,"Cost of upgrade is $costOfUpgrade",Toast.LENGTH_SHORT).show()
                 return
             }
             score -= costOfUpgrade
@@ -103,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun increaseScoreOnClick() {
-        synchronized(this){
+        synchronized(this) {
             score += powerOfClick
         }
         scoreText.text = getString(R.string.player_score, score.toString())
@@ -146,8 +155,9 @@ class MainActivity : AppCompatActivity() {
     private fun addFarmer() {
         val costOfUpgrade = amountOfFarmers * 500
 
-        synchronized(this){
+        synchronized(this) {
             if (costOfUpgrade > score) {
+                Toast.makeText(applicationContext ,"Cost of upgrade is $costOfUpgrade",Toast.LENGTH_SHORT).show()
                 return
             }
             score -= costOfUpgrade
@@ -157,13 +167,12 @@ class MainActivity : AppCompatActivity() {
         scoreText.text = getString(R.string.player_score, score.toString())
         amountOfWorkersText.text =
             getString(R.string.current_amount_of_workers, amountOfFarmers.toString())
-        createFarmers()
     }
 
     private fun createFarmers() {
         timer.schedule(object : TimerTask() {
             override fun run() {
-                synchronized(this){
+                synchronized(this) {
                     score += powerOfClick * amountOfFarmers
                 }
 
